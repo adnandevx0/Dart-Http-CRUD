@@ -71,3 +71,68 @@ void main() async {
 
 
 </pre>
+
+
+
+
+<h4>Http Put Request via Api</h4>
+
+<pre>
+
+import 'package:http/http.dart' as http;
+import 'dart:convert'; 
+
+void main() async {
+  String url = "https://jsonplaceholder.typicode.com/posts/1";
+
+  Map<String, dynamic> myData = {
+    "id": 1,
+    "title": "Adnan's Post",
+    "body": "Hello World",
+    "userId": 1,
+  };
+
+  var res = await http.put(
+    Uri.parse(url),
+    headers: {"Content-Type": "application/json; charset=UTF-8"},
+    body: jsonEncode(myData),
+  );
+
+  print("Status Code: ${res.statusCode}");
+  if (res.statusCode == 200) {
+    print("data update success");
+    var v = jsonDecode(res.body);
+    print(v);
+  } else {
+    print("Not data Found");
+  }
+}
+
+
+</pre>
+
+
+
+
+<h4>Http Delete Request via Api</h4>
+
+<pre>
+
+import 'package:http/http.dart' as http;
+import 'dart:convert'; 
+
+void main() async {
+  String url = "https://jsonplaceholder.typicode.com/posts/1";
+
+  var res = await http.delete(
+    Uri.parse(url));
+
+  if (res.statusCode == 200) {
+    print("delete success");
+  } else {
+    print("Not Success");
+  }
+}
+
+
+</pre>
